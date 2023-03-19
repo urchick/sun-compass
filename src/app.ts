@@ -1,4 +1,4 @@
-navigator.serviceWorker?.register('sw.js')
+navigator.serviceWorker?.register('sw.js', {type: 'module'})
 
 const {searchParams} = new URL(location.toString())
 
