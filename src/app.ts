@@ -37,7 +37,7 @@ function setCity(city: string, longitude: number) {
 function renderSunArrow(width: number, height: number, radius: number) {
     const sunArrow$ = compass$.querySelector('#sun-arrow') as SVGPathElement
 
-    sunArrow$.style.d = `path('M 0 ${-radius + 2 * sunRadius} L 0 ${radius}')`;
+    sunArrow$.style.d = `path('M 0 ${-radius + 2 * sunRadius} L 0 ${radius}')`
     
     const sunText$ = sunArrow$.nextElementSibling as SVGTextElement
     sunText$.setAttribute('x', '0')
@@ -50,15 +50,15 @@ function renderSouthArrow(radius: number, sunAngleRadians: number) {
     const arrow$ = compass$.querySelector('#compass-arrow-south') as SVGPathElement
     
     const length = radius - 4 * sunRadius
-    const x = Math.cos(-Math.PI / 2 - sunAngleRadians) * length
-    const y = Math.sin(-Math.PI / 2 - sunAngleRadians) * length
+    const x = Math.cos(Math.PI / 2 - sunAngleRadians) * length
+    const y = -Math.sin(Math.PI / 2 - sunAngleRadians) * length
 
-    arrow$.style.d = `path('M 0 0 L ${x.toFixed(5)} ${-y.toFixed(5)}')`;
+    arrow$.style.d = `path('M 0 0 L ${x.toFixed(5)} ${y.toFixed(5)}')`
 
     const text$ = arrow$.nextElementSibling as SVGTextElement
     const textDistance = length + sunRadius
-    const xText = Math.cos(-Math.PI / 2 - sunAngleRadians) * textDistance
-    const yText = Math.sin(-Math.PI / 2 - sunAngleRadians) * textDistance
+    const xText = Math.cos(Math.PI / 2 - sunAngleRadians) * textDistance
+    const yText = -Math.sin(Math.PI / 2 - sunAngleRadians) * textDistance
     text$.setAttribute('x', xText.toFixed(5))
     text$.setAttribute('y', yText.toFixed(5))
 }

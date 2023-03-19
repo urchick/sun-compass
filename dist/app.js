@@ -32,13 +32,13 @@ function renderSunArrow(width, height, radius) {
 function renderSouthArrow(radius, sunAngleRadians) {
     const arrow$ = compass$.querySelector('#compass-arrow-south');
     const length = radius - 4 * sunRadius;
-    const x = Math.cos(-Math.PI / 2 - sunAngleRadians) * length;
-    const y = Math.sin(-Math.PI / 2 - sunAngleRadians) * length;
-    arrow$.style.d = `path('M 0 0 L ${x.toFixed(5)} ${-y.toFixed(5)}')`;
+    const x = Math.cos(Math.PI / 2 - sunAngleRadians) * length;
+    const y = -Math.sin(Math.PI / 2 - sunAngleRadians) * length;
+    arrow$.style.d = `path('M 0 0 L ${x.toFixed(5)} ${y.toFixed(5)}')`;
     const text$ = arrow$.nextElementSibling;
     const textDistance = length + sunRadius;
-    const xText = Math.cos(-Math.PI / 2 - sunAngleRadians) * textDistance;
-    const yText = Math.sin(-Math.PI / 2 - sunAngleRadians) * textDistance;
+    const xText = Math.cos(Math.PI / 2 - sunAngleRadians) * textDistance;
+    const yText = -Math.sin(Math.PI / 2 - sunAngleRadians) * textDistance;
     text$.setAttribute('x', xText.toFixed(5));
     text$.setAttribute('y', yText.toFixed(5));
 }
