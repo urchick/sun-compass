@@ -33,8 +33,8 @@ function renderSunArrow(width, height, radius) {
 function renderCompassArrow(radius, sunAngleRadians, selector) {
     const arrow$ = compass$.querySelector(selector);
     const length = radius - 4 * sunRadius;
-    const x = Math.cos(Math.PI / 2 - sunAngleRadians) * length;
-    const y = -Math.sin(Math.PI / 2 - sunAngleRadians) * length;
+    const x = Math.cos(Math.PI / 2 + sunAngleRadians) * length;
+    const y = -Math.sin(Math.PI / 2 + sunAngleRadians) * length;
     arrow$.style.d = `path('M 0 0 L ${x.toFixed(5)} ${y.toFixed(5)}')`;
     const text$ = arrow$.nextElementSibling;
     const textDistance = length + sunRadius;
