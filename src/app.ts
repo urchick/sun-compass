@@ -24,7 +24,7 @@ compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height
 
 renderSunArrow(width, height, radius)
 
-const sunAngle = calculateSunAngleRadians(longitude, new Date)
+const sunAngle = calculateSunAngleRadians(longitude, new Date('2023-03-19 12:00:00'))
 
 renderSouthArrow(radius, sunAngle)
 
