@@ -58,8 +58,8 @@ function renderCompassArrow(radius: number, sunAngleRadians: number, selector: s
 
     const text$ = arrow$.nextElementSibling as SVGTextElement
     const textDistance = length + sunRadius
-    const xText = Math.cos(Math.PI / 2 - sunAngleRadians) * textDistance
-    const yText = -Math.sin(Math.PI / 2 - sunAngleRadians) * textDistance
+    const xText = Math.cos(Math.PI / 2 + sunAngleRadians) * textDistance
+    const yText = -Math.sin(Math.PI / 2 + sunAngleRadians) * textDistance
     text$.setAttribute('x', xText.toFixed(5))
     text$.setAttribute('y', yText.toFixed(5))
 }
