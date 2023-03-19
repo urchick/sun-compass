@@ -35,6 +35,8 @@ function renderSunArrow(width: number, height: number, radius: number) {
     sunArrow$.style.d = `path('M 0 ${-radius + 2 * sunRadius} L 0 ${radius}')`;
     
     const sunText$ = sunArrow$.nextElementSibling as SVGTextElement
+    sunText$.setAttribute('x', '0')
+    sunText$.setAttribute('y', `${-radius + sunRadius}`)
     sunText$.style.x = 0
     sunText$.style.y = -radius + sunRadius
 }
