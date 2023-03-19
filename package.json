@@ -1,0 +1,21 @@
+{
+    "name": "sun-compass",
+    "type": "module",
+    "engines": {
+        "node": ">=16"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.55.0",
+        "@typescript-eslint/parser": "^5.55.0",
+        "@urchick/eslint-plugin-parens-indent": "^1.0.1",
+        "eslint": "^8.36.0",
+        "eslint-plugin-etc": "^2.0.2",
+        "eslint-plugin-unicorn": "^44.0.2",
+        "typescript": "^5.0.2"
+    },
+    "scripts": {
+        "tsc": "tsc",
+        "html": "cp src/*.html dist",
+        "build": "npm run tsc & npm run html"
+    }
+}

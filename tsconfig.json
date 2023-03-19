@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "target": "ES2015",
+      "allowSyntheticDefaultImports": true,
+      "isolatedModules": true,
+      "strict": true,
+      "module": "esnext",
+      "lib": ["esnext", "es6", "dom", "webworker"],
+      "moduleResolution": "node",
+      "outDir": "dist",
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "exactOptionalPropertyTypes": true,
+      "useUnknownInCatchVariables": true,
+      "noErrorTruncation": true,
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noUnusedLocals": true,
+      "allowUnreachableCode": false,
+      "skipLibCheck": true,
+      "noEmitOnError": true,
+  },
+  "include": ["src/*.ts"],
+  "exclude": ["node_modules/**/*"]
+}
