@@ -22,6 +22,8 @@ compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height
 
 renderSunArrow(width, height, radius)
 
+calculateSunAngleRadians(longitude, new Date)
+
 function setCity(city: string, longitude: number) {
     const city$ = document.querySelector('#city') as HTMLElement
 
@@ -41,7 +43,6 @@ function renderSunArrow(width: number, height: number, radius: number) {
     sunText$.style.y = -radius + sunRadius
 }
 
-// @ts-ignore
 function calculateSunAngleRadians(longitude: number, date: Date) {
     const timeZone = date.getTimezoneOffset() / 60
     const midday = 12 + (-timeZone - longitude / 15)
