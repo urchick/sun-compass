@@ -13,7 +13,13 @@ self.addEventListener('install', e => {
     e.waitUntil((() => __awaiter(void 0, void 0, void 0, function* () {
         const cache = yield caches.open(cacheName);
         console.log('[Service Worker] Caching all: app shell and content');
-        yield cache.addAll(['/', '/index.html']);
+        yield cache.addAll([
+            '/dist/',
+            '/dist/index.html',
+            '/dist/settings.html',
+            '/dist/app.js',
+            '/dist/settings.js',
+        ]);
     }))());
 });
 self.addEventListener('fetch', e => {
