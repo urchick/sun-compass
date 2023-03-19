@@ -3,8 +3,26 @@ var _a;
 const { searchParams } = new URL(location.toString());
 const city = searchParams.get('city');
 const longitude = +(searchParams.get('lng') || 0);
-if (!city)
+if (!city) {
     location.replace('settings.html');
-const city$ = document.querySelector('#city');
-city$.textContent = `${city}: ${longitude}`;
+    throw 'redirecting...';
+}
+setCity(city, longitude);
+const compass$ = document.querySelector('#compass');
+const { width, height } = compass$.getBoundingClientRect();
+const radius = Math.min(width, height) / 2;
+compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`);
+renderSunArrow(width, height, radius);
+function setCity(city, longitude) {
+    const city$ = document.querySelector('#city');
+    city$.textContent = `${city}: ${longitude}`;
+}
+function renderSunArrow(width, height, radius) {
+    const sunRadius = 15;
+    const sunArrow$ = compass$.querySelector('#sun-arrow');
+    sunArrow$.style.d = `path(M 0 ${-radius + 2 * sunRadius} L 0 ${radius})`;
+    const sunText$ = sunArrow$.nextElementSibling;
+    sunText$.style.x = 0;
+    sunText$.style.y = -radius + sunRadius;
+}
 export {};

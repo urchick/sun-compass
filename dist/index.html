@@ -13,6 +13,8 @@
         height: 100vh;
         margin: 0;
         overflow: hidden;
+        background: #000;
+        color: #fff;
     }
     a {
         text-decoration: none;
@@ -20,6 +22,7 @@
     }
     #compass {
         flex: 1;
+        stroke: #fff;
     }
 </style>
 
@@ -30,7 +33,10 @@
 <!--div id='debug'>-</div-->
 <svg id='compass' viewBox='0 0 400 110'>
     <path id='sun-arrow'/>
-    <path id='sun-arrow'/>
+    <text text-anchor='middle' alignment-baseline='middle'>
+        ☼
+    </text>
+    <path id='compass-arrow'/>
 </svg>
 
 <script type='module' src='app.js' async defer></script>
