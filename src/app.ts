@@ -49,11 +49,11 @@ function renderSunArrow(width: number, height: number, radius: number) {
 function renderSouthArrow(radius: number, sunAngleRadians: number) {
     const arrow$ = compass$.querySelector('#compass-arrow-south') as SVGPathElement
     
-    const length = 2 * radius - 4 * sunRadius
+    const length = radius - 4 * sunRadius
     const x = Math.cos(-Math.PI / 2 - sunAngleRadians) * length
     const y = Math.sin(-Math.PI / 2 - sunAngleRadians) * length
 
-    arrow$.style.d = `path('M 0 0 L ${x.toFixed(5)} ${y.toFixed(5)}')`;
+    arrow$.style.d = `path('M 0 0 L ${x.toFixed(5)} ${-y.toFixed(5)}')`;
 
     const text$ = arrow$.nextElementSibling as SVGTextElement
     const textDistance = length + sunRadius
