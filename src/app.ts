@@ -32,7 +32,7 @@ function renderSunArrow(width: number, height: number, radius: number) {
     const sunRadius = 15
     const sunArrow$ = compass$.querySelector('#sun-arrow') as SVGPathElement
 
-    sunArrow$.style.d = `path(M 0 ${-radius + 2 * sunRadius} L 0 ${radius})`;
+    sunArrow$.style.d = `path('M 0 ${-radius + 2 * sunRadius} L 0 ${radius}')`;
     
     const sunText$ = sunArrow$.nextElementSibling as SVGTextElement
     sunText$.style.x = 0

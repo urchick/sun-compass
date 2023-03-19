@@ -20,7 +20,7 @@ function setCity(city, longitude) {
 function renderSunArrow(width, height, radius) {
     const sunRadius = 15;
     const sunArrow$ = compass$.querySelector('#sun-arrow');
-    sunArrow$.style.d = `path(M 0 ${-radius + 2 * sunRadius} L 0 ${radius})`;
+    sunArrow$.style.d = `path('M 0 ${-radius + 2 * sunRadius} L 0 ${radius}')`;
     const sunText$ = sunArrow$.nextElementSibling;
     sunText$.style.x = 0;
     sunText$.style.y = -radius + sunRadius;
