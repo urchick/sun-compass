@@ -14,8 +14,9 @@ const { width, height } = compass$.getBoundingClientRect();
 const radius = Math.min(width, height) / 2;
 compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`);
 renderSunArrow(width, height, radius);
-const sunAngle = calculateSunAngleRadians(longitude, new Date('2023-03-19 12:00:00'));
-renderSouthArrow(radius, sunAngle);
+const sunAngle = calculateSunAngleRadians(longitude, new Date);
+renderCompassArrow(radius, sunAngle, '#compass-arrow-south');
+renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north');
 function setCity(city, longitude) {
     const city$ = document.querySelector('#city');
     city$.textContent = `${city}: ${longitude}`;
@@ -29,8 +30,8 @@ function renderSunArrow(width, height, radius) {
     sunText$.style.x = 0;
     sunText$.style.y = -radius + sunRadius;
 }
-function renderSouthArrow(radius, sunAngleRadians) {
-    const arrow$ = compass$.querySelector('#compass-arrow-south');
+function renderCompassArrow(radius, sunAngleRadians, selector) {
+    const arrow$ = compass$.querySelector(selector);
     const length = radius - 4 * sunRadius;
     const x = Math.cos(Math.PI / 2 - sunAngleRadians) * length;
     const y = -Math.sin(Math.PI / 2 - sunAngleRadians) * length;

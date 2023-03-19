@@ -24,9 +24,10 @@ compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height
 
 renderSunArrow(width, height, radius)
 
-const sunAngle = calculateSunAngleRadians(longitude, new Date('2023-03-19 12:00:00'))
+const sunAngle = calculateSunAngleRadians(longitude, new Date)
 
-renderSouthArrow(radius, sunAngle)
+renderCompassArrow(radius, sunAngle, '#compass-arrow-south')
+renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north')
 
 function setCity(city: string, longitude: number) {
     const city$ = document.querySelector('#city') as HTMLElement
@@ -46,8 +47,8 @@ function renderSunArrow(width: number, height: number, radius: number) {
     sunText$.style.y = -radius + sunRadius
 }
 
-function renderSouthArrow(radius: number, sunAngleRadians: number) {
-    const arrow$ = compass$.querySelector('#compass-arrow-south') as SVGPathElement
+function renderCompassArrow(radius: number, sunAngleRadians: number, selector: string) {
+    const arrow$ = compass$.querySelector(selector) as SVGPathElement
     
     const length = radius - 4 * sunRadius
     const x = Math.cos(Math.PI / 2 - sunAngleRadians) * length
