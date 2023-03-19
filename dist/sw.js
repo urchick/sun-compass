@@ -14,17 +14,17 @@ self.addEventListener('install', e => {
         const cache = yield caches.open(cacheName);
         console.log('[Service Worker] Caching all: app shell and content');
         yield cache.addAll([
-            '/dist/',
-            '/dist/index.html',
-            '/dist/settings.html',
-            '/dist/app.js',
-            '/dist/settings.js',
+            '/sun-compass/dist/',
+            '/sun-compass/dist/index.html',
+            '/sun-compass/dist/settings.html',
+            '/sun-compass/dist/app.js',
+            '/sun-compass/dist/settings.js',
         ]);
     }))());
 });
 self.addEventListener('fetch', e => {
     e.respondWith((() => __awaiter(void 0, void 0, void 0, function* () {
-        const r = yield caches.match(e.request);
+        const r = yield caches.match(e.request, { ignoreSearch: true });
         console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
         if (r)
             return r;

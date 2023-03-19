@@ -8,18 +8,18 @@ self.addEventListener('install', e => {
     const cache = await caches.open(cacheName)
     console.log('[Service Worker] Caching all: app shell and content')
     await cache.addAll([
-      '/dist/',
-      '/dist/index.html',
-      '/dist/settings.html',
-      '/dist/app.js',
-      '/dist/settings.js',
+      '/sun-compass/dist/',
+      '/sun-compass/dist/index.html',
+      '/sun-compass/dist/settings.html',
+      '/sun-compass/dist/app.js',
+      '/sun-compass/dist/settings.js',
     ])
   })())
 })
 
 self.addEventListener('fetch', e => {
   e.respondWith((async () => {
-    const r = await caches.match(e.request)
+    const r = await caches.match(e.request, {ignoreSearch: true})
     console.log(`[Service Worker] Fetching resource: ${e.request.url}`)
     if (r) 
         return r
