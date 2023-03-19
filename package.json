@@ -15,7 +15,7 @@
     },
     "scripts": {
         "tsc": "tsc",
-        "html": "cp src/*.html dist",
+        "html": "cp src/*.html dist & cp app.webmanifest dist",
         "build": "npm run tsc & npm run html"
     }
 }
