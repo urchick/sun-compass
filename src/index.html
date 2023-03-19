@@ -24,6 +24,12 @@
         flex: 1;
         stroke: #fff;
     }
+    #compass-arrow-north {
+        stroke: #55f;
+    }
+    #compass-arrow-south {
+        stroke: #f55;
+    }
 </style>
 
 <body>
@@ -36,7 +42,14 @@
     <text text-anchor='middle' alignment-baseline='middle'>
         ☼
     </text>
-    <path id='compass-arrow'/>
+    <path id='compass-arrow-north'/>
+    <text text-anchor='middle' alignment-baseline='middle'>
+        С
+    </text>
+    <path id='compass-arrow-south'/>
+    <text text-anchor='middle' alignment-baseline='middle'>
+        Ю
+    </text>
 </svg>
 
 <script type='module' src='app.js' async defer></script>
