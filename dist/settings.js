@@ -20,6 +20,6 @@ const submit$ = document.querySelector('#submit');
 submit$.addEventListener('click', () => {
     const city = select$.value;
     const longitude = predefinedCities[city];
-    location.replace(`/?city=${city}&lng=${longitude}`);
+    location.replace(`index.html?city=${city}&lng=${longitude}`);
 });
 export {};
