@@ -9,19 +9,26 @@
 <style>
     body {
         display: flex;
+        flex-direction: column;
         height: 100vh;
         margin: 0;
         overflow: hidden;
-        --angle-x: 45;
-        --angle-y: 0;
+    }
+    a {
+        text-decoration: none;
+        color: unset
+    }
+    #compass {
+        flex: 1;
     }
 </style>
 
 <body>
 
-<p id='city'></p>
+<a href='settings.html' id='city'>Гружу...</a>
+
 <!--div id='debug'>-</div-->
-<svg width='450' height='110' viewBox='0 0 400 110'>
+<svg id='compass' viewBox='0 0 400 110'>
     <path id='sun-arrow'/>
     <path id='sun-arrow'/>
 </svg>
