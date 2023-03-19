@@ -46,7 +46,7 @@ function renderSunArrow(width: number, height: number, radius: number) {
 function calculateSunAngleRadians(longitude: number, date: Date) {
     const timeZone = date.getTimezoneOffset() / 60
     const midday = 12 + (-timeZone - longitude / 15)
-    const millisFromMidnight = ((date.getHours() * 60 + date.getMinutes()) * 60 + date.getSeconds() * 1000) + date.getMilliseconds()
+    const millisFromMidnight = (((date.getHours() * 60 + date.getMinutes()) * 60 + date.getSeconds()) * 1000) + date.getMilliseconds()
     const currentHours = millisFromMidnight / 1000 / 60 / 60
     const sunHours = (midday + currentHours) / 2
     return sunHours
