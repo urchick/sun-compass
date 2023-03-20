@@ -14,9 +14,10 @@ if (!city) {
 
 setCity(city, longitude)
 
+const compass$ = document.querySelector('#compass') as SVGSVGElement
+
 renderApp()
 
-const compass$ = document.querySelector('#compass') as SVGSVGElement
 const resizeObserver = new ResizeObserver(renderApp)
 
 resizeObserver.observe(compass$)

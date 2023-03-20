@@ -9,8 +9,8 @@ if (!city) {
     throw 'redirecting...';
 }
 setCity(city, longitude);
-renderApp();
 const compass$ = document.querySelector('#compass');
+renderApp();
 const resizeObserver = new ResizeObserver(renderApp);
 resizeObserver.observe(compass$);
 function renderApp() {
