@@ -32,7 +32,7 @@ renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north')
 function setCity(city: string, longitude: number) {
     const city$ = document.querySelector('#city') as HTMLElement
 
-    city$.textContent = `${city}: ${longitude}`
+    city$.textContent = city
 }
 
 function renderSunArrow(width: number, height: number, radius: number) {

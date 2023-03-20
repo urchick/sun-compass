@@ -19,7 +19,7 @@ renderCompassArrow(radius, sunAngle, '#compass-arrow-south');
 renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north');
 function setCity(city, longitude) {
     const city$ = document.querySelector('#city');
-    city$.textContent = `${city}: ${longitude}`;
+    city$.textContent = city;
 }
 function renderSunArrow(width, height, radius) {
     const sunArrow$ = compass$.querySelector('#sun-arrow');
