@@ -15,11 +15,11 @@ const predefinedCities = {
 const select$ = document.querySelector('#select');
 select$.append(...Object.keys(predefinedCities)
     .map(city => Object.assign(document.createElement('option'), { value: city, textContent: city })));
-select$.value = localStorage.getItem('city') || Object.keys(predefinedCities)[0];
+select$.value = localStorage.getItem('sun-compass-city') || Object.keys(predefinedCities)[0];
 const submit$ = document.querySelector('#submit');
 submit$.addEventListener('click', () => {
-    const city = select$.value;
-    const longitude = predefinedCities[city];
-    location.replace(`index.html?city=${city}&lng=${longitude}`);
+    localStorage.setItem('sun-compass-city', select$.value);
+    localStorage.setItem('sun-compass-lng', `${predefinedCities[select$.value]}`);
+    location.replace('index.html');
 });
 export {};

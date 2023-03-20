@@ -2,10 +2,8 @@ const sunRadius = 15
 
 navigator.serviceWorker?.register('sw.js', {type: 'module'})
 
-const {searchParams} = new URL(location.toString())
-
-const city = searchParams.get('city')
-const longitude = +(searchParams.get('lng') || 0)
+const city = localStorage.getItem('sun-compass-city')
+const longitude = +(localStorage.getItem('sun-compass-lng') || 0)
 
 if (!city) {
     location.replace('settings.html')

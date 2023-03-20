@@ -25,15 +25,15 @@ select$.append(
         ))
 )
 
-select$.value = localStorage.getItem('city') || Object.keys(predefinedCities)[0]
+select$.value = localStorage.getItem('sun-compass-city') || Object.keys(predefinedCities)[0]
 
 const submit$ = document.querySelector('#submit') as HTMLButtonElement
 
 submit$.addEventListener('click', () => {
-    const city = select$.value as City
-    const longitude = predefinedCities[city]
+    localStorage.setItem('sun-compass-city', select$.value)
+    localStorage.setItem('sun-compass-lng', `${predefinedCities[select$.value as City]}`)
 
-    location.replace(`index.html?city=${city}&lng=${longitude}`)
+    location.replace('index.html')
 })
 
 export {}
