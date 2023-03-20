@@ -9,14 +9,19 @@ if (!city) {
     throw 'redirecting...';
 }
 setCity(city, longitude);
+renderApp();
 const compass$ = document.querySelector('#compass');
-const { width, height } = compass$.getBoundingClientRect();
-const radius = Math.min(width, height) / 2;
-compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`);
-renderSunArrow(width, height, radius);
-const sunAngle = calculateSunAngleRadians(longitude, new Date);
-renderCompassArrow(radius, sunAngle, '#compass-arrow-south');
-renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north');
+const resizeObserver = new ResizeObserver(renderApp);
+resizeObserver.observe(compass$);
+function renderApp() {
+    const { width, height } = compass$.getBoundingClientRect();
+    const radius = Math.min(width, height) / 2;
+    compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`);
+    renderSunArrow(width, height, radius);
+    const sunAngle = calculateSunAngleRadians(longitude, new Date);
+    renderCompassArrow(radius, sunAngle, '#compass-arrow-south');
+    renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north');
+}
 function setCity(city, longitude) {
     const city$ = document.querySelector('#city');
     city$.textContent = city;

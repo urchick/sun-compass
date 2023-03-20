@@ -14,20 +14,27 @@ if (!city) {
 
 setCity(city, longitude)
 
+renderApp()
+
 const compass$ = document.querySelector('#compass') as SVGSVGElement
+const resizeObserver = new ResizeObserver(renderApp)
 
-const {width, height} = compass$.getBoundingClientRect()
+resizeObserver.observe(compass$)
 
-const radius = Math.min(width, height) / 2
-
-compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
-
-renderSunArrow(width, height, radius)
-
-const sunAngle = calculateSunAngleRadians(longitude, new Date)
-
-renderCompassArrow(radius, sunAngle, '#compass-arrow-south')
-renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north')
+function renderApp() {
+    const {width, height} = compass$.getBoundingClientRect()
+    
+    const radius = Math.min(width, height) / 2
+    
+    compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
+    
+    renderSunArrow(width, height, radius)
+    
+    const sunAngle = calculateSunAngleRadians(longitude, new Date)
+    
+    renderCompassArrow(radius, sunAngle, '#compass-arrow-south')
+    renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north')    
+}
 
 function setCity(city: string, longitude: number) {
     const city$ = document.querySelector('#city') as HTMLElement
