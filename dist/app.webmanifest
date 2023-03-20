@@ -10,7 +10,7 @@
       }
     ],
     "start_url": "/sun-compass/dist/index.html",
-    "display": "fullscreen",
+    "display": "standalone",
     "orientation": "portrait-primary",
     "theme_color": "#B12A34",
     "background_color": "#B12A34"
