@@ -19,8 +19,7 @@ function renderApp() {
     compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`);
     renderCompassArrow(height / 2, 0, '#compass-arrow-south');
     renderCompassArrow(height / 2, Math.PI, '#compass-arrow-north');
-    const sunAngle = Astro.getPosition(new Date, 55, longitude).azimuth;
-    renderSunArrow(radius - sunRadius * 2, sunAngle);
+    renderSunArrow(radius - sunRadius * 2, Astro.getPosition(new Date, 55, longitude).azimuth);
 }
 function setCity(city, longitude) {
     const city$ = document.querySelector('#city');
