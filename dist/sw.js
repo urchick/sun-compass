@@ -19,6 +19,7 @@ self.addEventListener('install', e => {
             '/sun-compass/dist/settings.html',
             '/sun-compass/dist/app.js',
             '/sun-compass/dist/settings.js',
+            '/sun-compass/dist/astro.js',
         ]);
     }))());
 });

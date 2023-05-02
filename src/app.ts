@@ -1,3 +1,5 @@
+import * as Astro from './astro.js'
+
 const sunRadius = 15
 
 navigator.serviceWorker?.register('sw.js', {type: 'module'})
@@ -29,7 +31,7 @@ function renderApp() {
     
     renderSunArrow(width, height, radius)
     
-    const sunAngle = calculateSunAngleRadians(longitude, new Date)
+    const sunAngle = Astro.getPosition(new Date, 55, longitude).azimuth
     
     renderCompassArrow(radius, sunAngle, '#compass-arrow-south')
     renderCompassArrow(radius, sunAngle - Math.PI, '#compass-arrow-north')    
@@ -69,14 +71,3 @@ function renderCompassArrow(radius: number, sunAngleRadians: number, selector: s
     text$.setAttribute('x', xText.toFixed(5))
     text$.setAttribute('y', yText.toFixed(5))
 }
-
-function calculateSunAngleRadians(longitude: number, date: Date) {
-    const timeZone = date.getTimezoneOffset() / 60
-    const midday = 12 + (-timeZone - longitude / 15)
-    const millisFromMidnight = (((date.getHours() * 60 + date.getMinutes()) * 60 + date.getSeconds()) * 1000) + date.getMilliseconds()
-    const currentHours = millisFromMidnight / 1000 / 60 / 60
-    const sunHours = (midday + currentHours) / 2
-    return (sunHours - 12) / 12 * Math.PI
-}
-
-export {}
