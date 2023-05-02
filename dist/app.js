@@ -19,7 +19,8 @@ function renderApp() {
     compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`);
     renderCompassArrow(height / 2, 0, '#compass-arrow-south');
     renderCompassArrow(height / 2, Math.PI, '#compass-arrow-north');
-    renderSunArrow(radius - sunRadius * 2, Astro.getPosition(new Date, 55, longitude).azimuth);
+    renderArrow(radius - sunRadius * 2, Astro.getPosition(new Date, 55, longitude).azimuth, compass$.querySelector('#sun-arrow'));
+    renderArrow(radius - sunRadius * 4, Astro.getMoonPosition(new Date, 55, longitude).azimuth, compass$.querySelector('#moon-arrow'));
 }
 function setCity(city, longitude) {
     const city$ = document.querySelector('#city');
@@ -38,16 +39,15 @@ function renderCompassArrow(radius, angle, selector) {
     text$.setAttribute('x', xText.toFixed(5));
     text$.setAttribute('y', yText.toFixed(5));
 }
-function renderSunArrow(radius, angle) {
-    const sunArrow$ = compass$.querySelector('#sun-arrow');
+function renderArrow(radius, angle, element$) {
     const radius1 = radius - 2 * sunRadius;
     const radius2 = radius;
     const x1 = Math.cos(-Math.PI / 2 - angle) * radius1;
     const y1 = -Math.sin(-Math.PI / 2 - angle) * radius1;
     const x2 = Math.cos(Math.PI / 2 - angle) * radius2;
     const y2 = -Math.sin(Math.PI / 2 - angle) * radius2;
-    sunArrow$.style.d = `path('M ${x1.toFixed(5)} ${y1.toFixed(5)} L ${x2.toFixed(5)} ${y2.toFixed(5)}')`;
-    const sunText$ = sunArrow$.nextElementSibling;
+    element$.style.d = `path('M ${x1.toFixed(5)} ${y1.toFixed(5)} L ${x2.toFixed(5)} ${y2.toFixed(5)}')`;
+    const sunText$ = element$.nextElementSibling;
     const textRadius = radius - sunRadius;
     const x = Math.cos(-Math.PI / 2 - angle) * textRadius;
     const y = -Math.sin(-Math.PI / 2 - angle) * textRadius;
