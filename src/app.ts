@@ -4,15 +4,15 @@ const sunRadius = 15
 
 navigator.serviceWorker?.register('sw.js', {type: 'module'})
 
-const city = localStorage.getItem('sun-compass-city')
-const longitude = +(localStorage.getItem('sun-compass-lng') || 0)
+const [city, ...coordinate] = (localStorage.getItem('sun-compass') || '').split('/')
+const [latitude, longitude] = coordinate.map(value => +value)
 
 if (!city) {
     location.replace('settings.html')
     throw 'redirecting...'
 }
 
-setCity(city, longitude)
+setCity(city)
 
 const compass$ = document.querySelector('#compass') as SVGSVGElement
 
@@ -34,18 +34,18 @@ function renderApp() {
     
     renderArrow(
         radius - sunRadius * 2,
-        Astro.getPosition(new Date, 55, longitude),
+        Astro.getPosition(new Date, latitude, longitude),
         compass$.querySelector('#sun-arrow') as SVGPathElement
     )
 
     renderArrow(
         radius - sunRadius * 4,
-        Astro.getMoonPosition(new Date, 55, longitude),
+        Astro.getMoonPosition(new Date, latitude, longitude),
         compass$.querySelector('#moon-arrow') as SVGPathElement
     )
 }
 
-function setCity(city: string, longitude: number) {
+function setCity(city: string) {
     const city$ = document.querySelector('#city') as HTMLElement
 
     city$.textContent = city

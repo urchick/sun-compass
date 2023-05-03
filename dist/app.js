@@ -2,13 +2,13 @@ var _a;
 import * as Astro from './astro.js';
 const sunRadius = 15;
 (_a = navigator.serviceWorker) === null || _a === void 0 ? void 0 : _a.register('sw.js', { type: 'module' });
-const city = localStorage.getItem('sun-compass-city');
-const longitude = +(localStorage.getItem('sun-compass-lng') || 0);
+const [city, ...coordinate] = (localStorage.getItem('sun-compass') || '').split('/');
+const [latitude, longitude] = coordinate.map(value => +value);
 if (!city) {
     location.replace('settings.html');
     throw 'redirecting...';
 }
-setCity(city, longitude);
+setCity(city);
 const compass$ = document.querySelector('#compass');
 renderApp();
 const resizeObserver = new ResizeObserver(renderApp);
@@ -19,10 +19,10 @@ function renderApp() {
     compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`);
     renderCompassArrow(height / 2, 0, '#compass-arrow-south');
     renderCompassArrow(height / 2, Math.PI, '#compass-arrow-north');
-    renderArrow(radius - sunRadius * 2, Astro.getPosition(new Date, 55, longitude), compass$.querySelector('#sun-arrow'));
-    renderArrow(radius - sunRadius * 4, Astro.getMoonPosition(new Date, 55, longitude), compass$.querySelector('#moon-arrow'));
+    renderArrow(radius - sunRadius * 2, Astro.getPosition(new Date, latitude, longitude), compass$.querySelector('#sun-arrow'));
+    renderArrow(radius - sunRadius * 4, Astro.getMoonPosition(new Date, latitude, longitude), compass$.querySelector('#moon-arrow'));
 }
-function setCity(city, longitude) {
+function setCity(city) {
     const city$ = document.querySelector('#city');
     city$.textContent = city;
 }
