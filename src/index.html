@@ -44,6 +44,11 @@
     #compass-arrow-south {
         stroke: #f55;
     }
+
+    .arrow {}
+    .arrow_invisible {
+        stroke-dasharray: 5;
+    }
 </style>
 
 <body>
@@ -56,15 +61,18 @@
     <text text-anchor='middle' alignment-baseline='middle'>
         С
     </text>
+
     <path id='compass-arrow-south'/>
     <text text-anchor='middle' alignment-baseline='middle'>
         Ю
     </text>
-    <path id='sun-arrow'/>
+
+    <path id='sun-arrow' class='arrow'/>
     <text text-anchor='middle' alignment-baseline='middle'>
         ☼
     </text>
-    <path id='moon-arrow'/>
+
+    <path id='moon-arrow' class='arrow'/>
     <text text-anchor='middle' alignment-baseline='middle'>
         ☽︎
     </text>

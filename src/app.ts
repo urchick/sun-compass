@@ -34,13 +34,13 @@ function renderApp() {
     
     renderArrow(
         radius - sunRadius * 2,
-        Astro.getPosition(new Date, 55, longitude).azimuth,
+        Astro.getPosition(new Date, 55, longitude),
         compass$.querySelector('#sun-arrow') as SVGPathElement
     )
 
     renderArrow(
         radius - sunRadius * 4,
-        Astro.getMoonPosition(new Date, 55, longitude).azimuth,
+        Astro.getMoonPosition(new Date, 55, longitude),
         compass$.querySelector('#moon-arrow') as SVGPathElement
     )
 }
@@ -68,20 +68,26 @@ function renderCompassArrow(radius: number, angle: number, selector: string) {
     text$.setAttribute('y', yText.toFixed(5))
 }
 
-function renderArrow(radius: number, angle: number, element$: SVGPathElement) {
+function renderArrow(
+    radius: number,
+    {azimuth, altitude}: ReturnType<typeof Astro.getMoonPosition>,
+    element$: SVGPathElement,
+) {
     const radius1 = radius - 2 * sunRadius
     const radius2 = radius
-    const x1 = Math.cos(-Math.PI / 2 - angle) * radius1
-    const y1 = -Math.sin(-Math.PI / 2 - angle) * radius1
-    const x2 = Math.cos(Math.PI / 2 - angle) * radius2
-    const y2 = -Math.sin(Math.PI / 2 - angle) * radius2
+    const x1 = Math.cos(-Math.PI / 2 - azimuth) * radius1
+    const y1 = -Math.sin(-Math.PI / 2 - azimuth) * radius1
+    const x2 = Math.cos(Math.PI / 2 - azimuth) * radius2
+    const y2 = -Math.sin(Math.PI / 2 - azimuth) * radius2
     
     element$.style.d = `path('M ${x1.toFixed(5)} ${y1.toFixed(5)} L ${x2.toFixed(5)} ${y2.toFixed(5)}')`
-    
+
+    element$.classList.toggle('arrow_invisible', altitude < 0)
+
     const sunText$ = element$.nextElementSibling as SVGTextElement
     const textRadius = radius - sunRadius
-    const x = Math.cos(-Math.PI / 2 - angle) * textRadius
-    const y = -Math.sin(-Math.PI / 2 - angle) * textRadius
+    const x = Math.cos(-Math.PI / 2 - azimuth) * textRadius
+    const y = -Math.sin(-Math.PI / 2 - azimuth) * textRadius
     sunText$.setAttribute('x', x.toFixed(5))
     sunText$.setAttribute('y', y.toFixed(5))
     // sunText$.style.x = x
