@@ -69,14 +69,14 @@ function renderCompassArrow(radius: number, angle: number, selector: string) {
     const x = Math.cos(-Math.PI / 2 - angle) * length
     const y = -Math.sin(-Math.PI / 2 - angle) * length
 
-    arrow$.style.d = `path('M 0 0 L ${x.toFixed(5)} ${y.toFixed(5)}')`
+    arrow$.style.d = `path('M 0 0 L ${x.toFixed(2)} ${y.toFixed(2)}')`
 
     const text$ = arrow$.nextElementSibling as SVGTextElement
     const textDistance = radius - sunRadius
     const xText = Math.cos(-Math.PI / 2 - angle) * textDistance
     const yText = -Math.sin(-Math.PI / 2 - angle) * textDistance
-    text$.setAttribute('x', xText.toFixed(5))
-    text$.setAttribute('y', yText.toFixed(5))
+    text$.setAttribute('x', xText.toFixed(2))
+    text$.setAttribute('y', yText.toFixed(2))
 }
 
 function renderArrow(
@@ -90,8 +90,8 @@ function renderArrow(
     const y1 = -Math.sin(-Math.PI / 2 - azimuth) * radius1
     const x2 = Math.cos(Math.PI / 2 - azimuth) * radius2
     const y2 = -Math.sin(Math.PI / 2 - azimuth) * radius2
-    
-    element$.style.d = `path('M ${x1.toFixed(5)} ${y1.toFixed(5)} L ${x2.toFixed(5)} ${y2.toFixed(5)}')`
+
+    element$.style.d = `path('M ${x1.toFixed(2)} ${y1.toFixed(2)} L ${x2.toFixed(2)} ${y2.toFixed(2)}')`
 
     element$.classList.toggle('arrow_invisible', altitude < 0)
 
@@ -99,8 +99,8 @@ function renderArrow(
     const textRadius = radius - sunRadius
     const x = Math.cos(-Math.PI / 2 - azimuth) * textRadius
     const y = -Math.sin(-Math.PI / 2 - azimuth) * textRadius
-    sunText$.setAttribute('x', x.toFixed(5))
-    sunText$.setAttribute('y', y.toFixed(5))
+    sunText$.setAttribute('x', x.toFixed(2))
+    sunText$.setAttribute('y', y.toFixed(2))
     // sunText$.style.x = x
     // sunText$.style.y = y
 }
