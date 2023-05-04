@@ -16,22 +16,26 @@ setCity(city)
 
 const compass$ = document.querySelector('#compass') as SVGSVGElement
 
-renderApp()
+reset()
 
-const resizeObserver = new ResizeObserver(renderApp)
+const resizeObserver = new ResizeObserver(reset)
 
 resizeObserver.observe(compass$)
 
-function renderApp() {
+function reset() {
     const {width, height} = compass$.getBoundingClientRect()
-    
-    const radius = Math.min(width, height) / 2
-    
     compass$.setAttribute('viewBox', `${-width / 2} ${-height / 2} ${width} ${height}`)
-    
+
     renderCompassArrow(height / 2, 0, '#compass-arrow-south')
-    renderCompassArrow(height / 2, Math.PI, '#compass-arrow-north')    
-    
+    renderCompassArrow(height / 2, Math.PI, '#compass-arrow-north')
+}
+
+function renderApp() {
+    const width = compass$.clientWidth
+    const height = compass$.clientHeight
+
+    const radius = Math.min(width, height) / 2
+
     renderArrow(
         radius - sunRadius * 2,
         Astro.getPosition(new Date, latitude, longitude),
@@ -45,6 +49,13 @@ function renderApp() {
     )
 }
 
+function scheduleRender() {
+    renderApp()
+    requestAnimationFrame(scheduleRender)
+}
+
+scheduleRender()
+
 function setCity(city: string) {
     const city$ = document.querySelector('#city') as HTMLElement
 
@@ -53,7 +64,7 @@ function setCity(city: string) {
 
 function renderCompassArrow(radius: number, angle: number, selector: string) {
     const arrow$ = compass$.querySelector(selector) as SVGPathElement
-    
+
     const length = radius - 2 * sunRadius
     const x = Math.cos(-Math.PI / 2 - angle) * length
     const y = -Math.sin(-Math.PI / 2 - angle) * length
