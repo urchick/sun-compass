@@ -20,11 +20,10 @@ function reset() {
     renderCompassArrow(height / 2, Math.PI, '#compass-arrow-north');
 }
 function renderApp() {
-    const width = compass$.clientWidth;
-    const height = compass$.clientHeight;
-    const radius = Math.min(width, height) / 2;
-    renderArrow(radius - sunRadius * 2, Astro.getPosition(new Date, latitude, longitude), compass$.querySelector('#sun-arrow'));
-    renderArrow(radius - sunRadius * 4, Astro.getMoonPosition(new Date, latitude, longitude), compass$.querySelector('#moon-arrow'));
+    const radius = Math.min(compass$.clientWidth, compass$.clientHeight) / 2;
+    const date = new Date;
+    renderArrow(radius - sunRadius * 2, Astro.getPosition(date, latitude, longitude), compass$.querySelector('#sun-arrow'));
+    renderArrow(radius - sunRadius * 4, Astro.getMoonPosition(date, latitude, longitude), compass$.querySelector('#moon-arrow'));
 }
 function scheduleRender() {
     renderApp();

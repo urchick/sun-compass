@@ -31,20 +31,18 @@ function reset() {
 }
 
 function renderApp() {
-    const width = compass$.clientWidth
-    const height = compass$.clientHeight
-
-    const radius = Math.min(width, height) / 2
+    const radius = Math.min(compass$.clientWidth, compass$.clientHeight) / 2
+    const date = new Date
 
     renderArrow(
         radius - sunRadius * 2,
-        Astro.getPosition(new Date, latitude, longitude),
+        Astro.getPosition(date, latitude, longitude),
         compass$.querySelector('#sun-arrow') as SVGPathElement
     )
 
     renderArrow(
         radius - sunRadius * 4,
-        Astro.getMoonPosition(new Date, latitude, longitude),
+        Astro.getMoonPosition(date, latitude, longitude),
         compass$.querySelector('#moon-arrow') as SVGPathElement
     )
 }
