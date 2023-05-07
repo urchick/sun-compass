@@ -62,6 +62,4 @@ function renderArrow(radius, { azimuth, altitude }, element$) {
     const y = -Math.sin(-Math.PI / 2 - azimuth) * textRadius;
     sunText$.setAttribute('x', x.toFixed(2));
     sunText$.setAttribute('y', y.toFixed(2));
-    // sunText$.style.x = x
-    // sunText$.style.y = y
 }
