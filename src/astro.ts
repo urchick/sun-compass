@@ -1,3 +1,5 @@
+// based on https://github.com/mourner/suncalc
+
 const {PI, sin, cos, tan, asin, atan2: atan} = Math
 const rad = PI / 180
 
