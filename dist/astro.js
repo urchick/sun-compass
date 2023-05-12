@@ -1,3 +1,4 @@
+// based on https://github.com/mourner/suncalc
 const { PI, sin, cos, tan, asin, atan2: atan } = Math;
 const rad = PI / 180;
 const dayMs = 1000 * 60 * 60 * 24;
@@ -55,7 +56,7 @@ export function getMoonPosition(date, lat, lng) {
     const c = moonCoords(d);
     const H = siderealTime(d, lw) - c.ra;
     const h = altitude(H, phi, c.dec);
-    // h = h + astroRefraction(h); // altitude correction for refraction
+    // h += astroRefraction(h); // altitude correction for refraction
     return {
         azimuth: azimuth(H, phi, c.dec),
         altitude: h,
