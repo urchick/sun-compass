@@ -82,7 +82,7 @@ export function getMoonPosition(date: Date, lat: number, lng: number) {
     const H = siderealTime(d, lw) - c.ra
     const h = altitude(H, phi, c.dec)
 
-    // h = h + astroRefraction(h); // altitude correction for refraction
+    // h += astroRefraction(h); // altitude correction for refraction
 
     return {
         azimuth: azimuth(H, phi, c.dec),
